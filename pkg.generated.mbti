@@ -66,8 +66,10 @@ pub struct ClassCalibrator {
 }
 pub fn ClassCalibrator::class_count(Self) -> Int32
 pub fn ClassCalibrator::count(Self) -> Int32
+pub fn ClassCalibrator::from_snapshot(String) -> Self raise ConformalError
 pub fn ClassCalibrator::p_values(Self, Array[Array[Double]]) -> Array[Array[Double]] raise ConformalError
 pub fn ClassCalibrator::predict(Self, Array[Array[Double]], Double) -> Array[Array[Int32]] raise ConformalError
+pub fn ClassCalibrator::to_snapshot(Self) -> String
 
 pub struct CvPlus {
   residuals : Array[Double]
