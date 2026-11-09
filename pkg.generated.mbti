@@ -66,6 +66,7 @@ pub fn Scores::values(Self) -> Array[Double]
 
 pub(all) enum SetRule {
   Lac
+  Aps
 }
 
 pub struct TailScores {

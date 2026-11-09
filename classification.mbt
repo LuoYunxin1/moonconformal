@@ -1,6 +1,7 @@
 ///|
 pub(all) enum SetRule {
   Lac
+  Aps
 }
 
 ///|
@@ -37,6 +38,7 @@ pub fn label_scores(
   validate_probability(row)
   match rule {
     Lac => row.map(p => 1.0 - p)
+    Aps => cumulative_scores(row, 0.0, row.length())
   }
 }
 
