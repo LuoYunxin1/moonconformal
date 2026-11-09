@@ -34,6 +34,10 @@ pub fn interval_path(Scores, Double, Array[Double]) -> Array[Interval] raise Con
 
 pub fn interval_score(Interval, Double, Double) -> Double raise ConformalError
 
+pub fn intervals_from_json(String) -> Array[Interval] raise ConformalError
+
+pub fn intervals_to_json(Array[Interval]) -> String raise ConformalError
+
 pub fn label_scores(Array[Double], SetRule) -> Array[Double] raise ConformalError
 
 pub fn minimum_calibration_count(Double) -> Int32 raise ConformalError
@@ -51,6 +55,10 @@ pub fn predict_tails(TailScores, Array[Double], Double, Double) -> Array[Interva
 pub fn scaled_scores(Array[Double], Array[Double], Array[Double]) -> Scores raise ConformalError
 
 pub fn select_by_p_value(Scores, Array[Double], Double) -> Array[Int32] raise ConformalError
+
+pub fn sets_from_json(String) -> (Int32, Array[Array[Int32]]) raise ConformalError
+
+pub fn sets_to_json(Array[Array[Int32]], Int32) -> String raise ConformalError
 
 pub fn tail_scores(Array[Double], Array[Double]) -> TailScores raise ConformalError
 
