@@ -1,0 +1,37 @@
+name: CI
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    name: verify (${{ matrix.target }})
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        target: [wasm-gc, wasm, js, native]
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - name: Install pinned compiler and core with SHA-256 verification
+        shell: bash
+        run: |
+          toolchain="$RUNNER_TEMP/moonconformal-toolchain"
+          bash scripts/install-toolchain.sh "$toolchain"
+          echo "$toolchain/bin" >> "$GITHUB_PATH"
+          echo "MOON_HOME=$toolchain" >> "$GITHUB_ENV"
+          echo "MOON_TOOLCHAIN_ROOT=$toolchain" >> "$GITHUB_ENV"
+      - name: Check formatting, types, tests, and build
+        run: |
+          moon fmt --check
+          moon check --deny-warn --target ${{ matrix.target }}
+          moon test --deny-warn --target ${{ matrix.target }}
+          moon build --deny-warn --target ${{ matrix.target }}
+      - name: Execute all downstream workflows and independent oracle
+        run: |
+          moon run --deny-warn --target ${{ matrix.target }} examples/regression
+          moon run --deny-warn --target ${{ matrix.target }} examples/classification
+          moon run --deny-warn --target ${{ matrix.target }} examples/platform
+          python3 tools/oracle.py --target ${{ matrix.target }}
