@@ -36,3 +36,7 @@
 完整登记表的 reserved/completed/rejected/external-checked 按能力扫描；MoonNormal/MoonIndex 为同账号已交付但不同工作流。MoonBench、MoonContract、MoonRecur、MoonShard 强制边界全部排除；MoonIsotonic、MoonBelief、MoonIRT 完整匹配指纹另存核对。原子预留只追加，不覆盖其他记录。
 
 限制：搜索摘要可能缺失或陈旧，GitHub 索引并非全部源码，登记表不含所有未公开项目。官方清单只是一个入口；未运行近邻项目测试，不宣称其正确性或完整性。在已记录检索范围内未发现成熟直接替代，发布前须再做核心接口反向检索。
+
+## 发布前反向复核（2026-11-09）
+
+最初 conformal MoonBit 代码搜索实际有 7 项，均来自 trkbt10/grib2_mbt；其中 decode/code_tables_section3.mbt 已逐项读取，命中为 Lambert Conformal 地图投影，不是保形预测。没有把这 7 项写成零结果。反向搜索 conformal_rank、nonconformity、精确 calibrate_classifier，各 per_page=100，均 total_count=0 且 incomplete_results=false；原始响应保存在仓库外。该结论仍受公开索引边界约束。
