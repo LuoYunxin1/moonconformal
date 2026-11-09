@@ -8,9 +8,13 @@ import {
 // Values
 pub fn absolute_scores(Array[Double], Array[Double]) -> Scores raise ConformalError
 
+pub fn calibrate_classifier(Array[Array[Double]], Array[Int32], SetRule) -> ClassCalibrator raise ConformalError
+
 pub fn conformal_rank(Int32, Double) -> Int32 raise ConformalError
 
 pub fn cqr_scores(Array[Double], Array[Double], Array[Double]) -> Scores raise ConformalError
+
+pub fn label_scores(Array[Double], SetRule) -> Array[Double] raise ConformalError
 
 pub fn predict_absolute(Scores, Array[Double], Double) -> Array[Interval] raise ConformalError
 
@@ -33,6 +37,15 @@ pub(all) suberror ConformalError {
 pub fn ConformalError::to_repr(Self) -> @debug.Repr
 
 // Types and methods
+pub struct ClassCalibrator {
+  scores : Scores
+  classes : Int32
+  rule : SetRule
+}
+pub fn ClassCalibrator::class_count(Self) -> Int32
+pub fn ClassCalibrator::count(Self) -> Int32
+pub fn ClassCalibrator::predict(Self, Array[Array[Double]], Double) -> Array[Array[Int32]] raise ConformalError
+
 pub(all) struct Interval {
   lower : Double
   upper : Double
@@ -50,6 +63,10 @@ pub fn Scores::new(Array[Double]) -> Self raise ConformalError
 pub fn Scores::p_value(Self, Double) -> Double raise ConformalError
 pub fn Scores::threshold(Self, Double) -> Double raise ConformalError
 pub fn Scores::values(Self) -> Array[Double]
+
+pub(all) enum SetRule {
+  Lac
+}
 
 pub struct TailScores {
   low : Scores
