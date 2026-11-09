@@ -18,7 +18,13 @@ pub fn cqr_scores(Array[Double], Array[Double], Array[Double]) -> Scores raise C
 
 pub fn cvplus_calibrate(Array[Double], Array[Double], Array[Int32], Int32) -> CvPlus raise ConformalError
 
+pub fn evaluate_intervals(Array[Double], Array[Interval]) -> IntervalMetrics raise ConformalError
+
+pub fn evaluate_sets(Array[Int32], Array[Array[Int32]], Int32) -> SetMetrics raise ConformalError
+
 pub fn grouped_scores(Array[Double], Array[String]) -> GroupScores raise ConformalError
+
+pub fn interval_score(Interval, Double, Double) -> Double raise ConformalError
 
 pub fn label_scores(Array[Double], SetRule) -> Array[Double] raise ConformalError
 
@@ -85,6 +91,15 @@ pub fn Interval::intersect(Self, Self) -> Self
 pub fn Interval::is_empty(Self) -> Bool
 pub fn Interval::width(Self) -> Double
 
+pub(all) struct IntervalMetrics {
+  count : Int32
+  covered : Int32
+  empty : Int32
+  unbounded : Int32
+  mean_width : Double
+  coverage : Double
+}
+
 pub struct Scores {
   sorted : Array[Double]
 }
@@ -93,6 +108,16 @@ pub fn Scores::new(Array[Double]) -> Self raise ConformalError
 pub fn Scores::p_value(Self, Double) -> Double raise ConformalError
 pub fn Scores::threshold(Self, Double) -> Double raise ConformalError
 pub fn Scores::values(Self) -> Array[Double]
+
+pub(all) struct SetMetrics {
+  count : Int32
+  covered : Int32
+  empty : Int32
+  singletons : Int32
+  mean_size : Double
+  coverage : Double
+  singleton_accuracy : Double?
+}
 
 pub(all) enum SetRule {
   Lac
