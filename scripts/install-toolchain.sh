@@ -21,6 +21,11 @@ curl --fail --location --retry 2 --connect-timeout 20 --max-time 120 \
   '30a8ae1c1e1e8fde478ea742cbc928c8f4ae1f5c00090afe3f10c97be9e5da64  core.tar.gz' | sha256sum --check)
 tar -xzf "$archive_dir/moonbit.tar.gz" -C "$dest"
 tar -xzf "$archive_dir/core.tar.gz" -C "$dest/lib"
+# Official archives may omit executable bits; Linux filesystems enforce them.
+chmod +x "$dest"/bin/*
+if [[ -d "$dest/lib/llvm/bin" ]]; then
+  chmod +x "$dest"/lib/llvm/bin/*
+fi
 export MOON_HOME="$dest"
 export MOON_TOOLCHAIN_ROOT="$dest"
 export PATH="$dest/bin:$PATH"
