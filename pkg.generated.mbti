@@ -1,0 +1,31 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "LuoYunxin1/moonconformal"
+
+import {
+  "moonbitlang/core/debug",
+}
+
+// Values
+pub fn conformal_rank(Int32, Double) -> Int32 raise ConformalError
+
+// Errors
+pub(all) suberror ConformalError {
+  Invalid(String)
+  ResourceLimit(String)
+  UnknownGroup(String)
+} derive(@debug.Debug)
+pub fn ConformalError::to_repr(Self) -> @debug.Repr
+
+// Types and methods
+pub struct Scores {
+  sorted : Array[Double]
+}
+pub fn Scores::count(Self) -> Int32
+pub fn Scores::new(Array[Double]) -> Self raise ConformalError
+pub fn Scores::p_value(Self, Double) -> Double raise ConformalError
+pub fn Scores::threshold(Self, Double) -> Double raise ConformalError
+pub fn Scores::values(Self) -> Array[Double]
+
+// Type aliases
+
+// Traits
