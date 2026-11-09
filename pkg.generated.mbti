@@ -18,6 +18,8 @@ pub fn cqr_scores(Array[Double], Array[Double], Array[Double]) -> Scores raise C
 
 pub fn cvplus_calibrate(Array[Double], Array[Double], Array[Int32], Int32) -> CvPlus raise ConformalError
 
+pub fn data_split(Int32, Array[Int32], Array[Int32], Array[Int32]) -> DataSplit raise ConformalError
+
 pub fn evaluate_grouped_intervals(Array[Double], Array[Interval], Array[String]) -> Array[GroupIntervalMetrics] raise ConformalError
 
 pub fn evaluate_intervals(Array[Double], Array[Interval]) -> IntervalMetrics raise ConformalError
@@ -79,6 +81,17 @@ pub struct CvPlus {
 pub fn CvPlus::count(Self) -> Int32
 pub fn CvPlus::fold_count(Self) -> Int32
 pub fn CvPlus::predict(Self, Array[Array[Double]], Double) -> Array[Interval] raise ConformalError
+
+pub struct DataSplit {
+  size : Int32
+  train : Array[Int32]
+  calibration : Array[Int32]
+  evaluation : Array[Int32]
+}
+pub fn DataSplit::calibration_values(Self, Array[Double]) -> Array[Double] raise ConformalError
+pub fn DataSplit::evaluation_values(Self, Array[Double]) -> Array[Double] raise ConformalError
+pub fn DataSplit::indices(Self) -> (Array[Int32], Array[Int32], Array[Int32])
+pub fn DataSplit::sizes(Self) -> (Int32, Int32, Int32)
 
 pub(all) struct GroupIntervalMetrics {
   group : String
