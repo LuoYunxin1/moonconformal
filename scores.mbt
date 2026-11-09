@@ -31,12 +31,16 @@ pub fn conformal_rank(n : Int32, alpha : Double) -> Int32 raise ConformalError {
   if n < 1 || n > 100000 {
     raise Invalid("calibration size must be in 1..100000")
   }
-  let raw = ((n + 1).to_double() * (1.0 - alpha)).ceil().to_int()
-  if raw < 1 {
-    1
-  } else {
-    raw
+  // Compare the discrete p-value grid directly, avoiding cancellation in 1-alpha.
+  let denominator = (n + 1).to_double()
+  let mut excluded = (denominator * alpha).floor().to_int()
+  while excluded > 0 && excluded.to_double() / denominator > alpha {
+    excluded = excluded - 1
   }
+  while excluded < n && (excluded + 1).to_double() / denominator <= alpha {
+    excluded = excluded + 1
+  }
+  n + 1 - excluded
 }
 
 ///|
