@@ -6,7 +6,11 @@ import {
 }
 
 // Values
+pub fn absolute_scores(Array[Double], Array[Double]) -> Scores raise ConformalError
+
 pub fn conformal_rank(Int32, Double) -> Int32 raise ConformalError
+
+pub fn predict_absolute(Scores, Array[Double], Double) -> Array[Interval] raise ConformalError
 
 // Errors
 pub(all) suberror ConformalError {
@@ -17,6 +21,15 @@ pub(all) suberror ConformalError {
 pub fn ConformalError::to_repr(Self) -> @debug.Repr
 
 // Types and methods
+pub(all) struct Interval {
+  lower : Double
+  upper : Double
+}
+pub fn Interval::contains(Self, Double) -> Bool
+pub fn Interval::intersect(Self, Self) -> Self
+pub fn Interval::is_empty(Self) -> Bool
+pub fn Interval::width(Self) -> Double
+
 pub struct Scores {
   sorted : Array[Double]
 }
