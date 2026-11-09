@@ -10,6 +10,8 @@ pub fn absolute_scores(Array[Double], Array[Double]) -> Scores raise ConformalEr
 
 pub fn calibrate_classifier(Array[Array[Double]], Array[Int32], SetRule) -> ClassCalibrator raise ConformalError
 
+pub fn calibrate_vectors(Array[Array[Double]], Array[Array[Double]], Array[Array[Double]]) -> VectorCalibrator raise ConformalError
+
 pub fn conformal_rank(Int32, Double) -> Int32 raise ConformalError
 
 pub fn cqr_scores(Array[Double], Array[Double], Array[Double]) -> Scores raise ConformalError
@@ -103,6 +105,14 @@ pub struct TailScores {
   high : Scores
 }
 pub fn TailScores::count(Self) -> Int32
+
+pub struct VectorCalibrator {
+  scores : Scores
+  dimensions : Int32
+}
+pub fn VectorCalibrator::count(Self) -> Int32
+pub fn VectorCalibrator::dimension(Self) -> Int32
+pub fn VectorCalibrator::predict(Self, Array[Array[Double]], Array[Array[Double]], Double) -> Array[Array[Interval]] raise ConformalError
 
 // Type aliases
 
