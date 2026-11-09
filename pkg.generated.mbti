@@ -14,6 +14,8 @@ pub fn conformal_rank(Int32, Double) -> Int32 raise ConformalError
 
 pub fn cqr_scores(Array[Double], Array[Double], Array[Double]) -> Scores raise ConformalError
 
+pub fn cvplus_calibrate(Array[Double], Array[Double], Array[Int32], Int32) -> CvPlus raise ConformalError
+
 pub fn grouped_scores(Array[Double], Array[String]) -> GroupScores raise ConformalError
 
 pub fn label_scores(Array[Double], SetRule) -> Array[Double] raise ConformalError
@@ -54,6 +56,15 @@ pub fn ClassCalibrator::class_count(Self) -> Int32
 pub fn ClassCalibrator::count(Self) -> Int32
 pub fn ClassCalibrator::p_values(Self, Array[Array[Double]]) -> Array[Array[Double]] raise ConformalError
 pub fn ClassCalibrator::predict(Self, Array[Array[Double]], Double) -> Array[Array[Int32]] raise ConformalError
+
+pub struct CvPlus {
+  residuals : Array[Double]
+  fold : Array[Int32]
+  folds : Int32
+}
+pub fn CvPlus::count(Self) -> Int32
+pub fn CvPlus::fold_count(Self) -> Int32
+pub fn CvPlus::predict(Self, Array[Array[Double]], Double) -> Array[Interval] raise ConformalError
 
 pub struct GroupScores {
   groups : Map[String, Scores]
