@@ -7,9 +7,9 @@ pub(all) enum SetRule {
 
 ///|
 pub struct ClassCalibrator {
-  scores : Scores
-  classes : Int32
-  rule : SetRule
+  priv scores : Scores
+  priv classes : Int32
+  priv rule : SetRule
 }
 
 ///|

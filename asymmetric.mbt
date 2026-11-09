@@ -1,8 +1,8 @@
 ///|
 /// Separate tail calibration, using a union bound for the requested total error.
 pub struct TailScores {
-  low : Scores
-  high : Scores
+  priv low : Scores
+  priv high : Scores
 }
 
 ///|

@@ -1,9 +1,9 @@
 ///|
 /// Frozen out-of-fold absolute residuals and their held-out model identifiers.
 pub struct CvPlus {
-  residuals : Array[Double]
-  fold : Array[Int32]
-  folds : Int32
+  priv residuals : Array[Double]
+  priv fold : Array[Int32]
+  priv folds : Int32
 }
 
 ///|

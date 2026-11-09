@@ -1,7 +1,7 @@
 ///|
 /// Frozen sorted calibration values. The underlying array is never returned.
 pub struct Scores {
-  sorted : Array[Double]
+  priv sorted : Array[Double]
 }
 
 ///|

@@ -1,8 +1,8 @@
 ///|
 /// Simultaneous rectangular sets from one maximum normalized score per row.
 pub struct VectorCalibrator {
-  scores : Scores
-  dimensions : Int32
+  priv scores : Scores
+  priv dimensions : Int32
 }
 
 ///|

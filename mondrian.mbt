@@ -1,8 +1,8 @@
 ///|
 /// Fixed groups must be determined without calibration outcomes.
 pub struct GroupScores {
-  groups : Map[String, Scores]
-  names : Array[String]
+  priv groups : Map[String, Scores]
+  priv names : Array[String]
 }
 
 ///|

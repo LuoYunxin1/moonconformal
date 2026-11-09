@@ -83,9 +83,7 @@ pub(all) struct CalibrationResolution {
 }
 
 pub struct ClassCalibrator {
-  scores : Scores
-  classes : Int32
-  rule : SetRule
+  // private fields
 }
 pub fn ClassCalibrator::class_count(Self) -> Int32
 pub fn ClassCalibrator::count(Self) -> Int32
@@ -95,19 +93,14 @@ pub fn ClassCalibrator::predict(Self, Array[Array[Double]], Double) -> Array[Arr
 pub fn ClassCalibrator::to_snapshot(Self) -> String
 
 pub struct CvPlus {
-  residuals : Array[Double]
-  fold : Array[Int32]
-  folds : Int32
+  // private fields
 }
 pub fn CvPlus::count(Self) -> Int32
 pub fn CvPlus::fold_count(Self) -> Int32
 pub fn CvPlus::predict(Self, Array[Array[Double]], Double) -> Array[Interval] raise ConformalError
 
 pub struct DataSplit {
-  size : Int32
-  train : Array[Int32]
-  calibration : Array[Int32]
-  evaluation : Array[Int32]
+  // private fields
 }
 pub fn DataSplit::calibration_values(Self, Array[Double]) -> Array[Double] raise ConformalError
 pub fn DataSplit::evaluation_values(Self, Array[Double]) -> Array[Double] raise ConformalError
@@ -120,8 +113,7 @@ pub(all) struct GroupIntervalMetrics {
 }
 
 pub struct GroupScores {
-  groups : Map[String, Scores]
-  names : Array[String]
+  // private fields
 }
 pub fn GroupScores::from_snapshot(String) -> Self raise ConformalError
 pub fn GroupScores::get(Self, String) -> Scores raise ConformalError
@@ -148,7 +140,7 @@ pub(all) struct IntervalMetrics {
 }
 
 pub struct Scores {
-  sorted : Array[Double]
+  // private fields
 }
 pub fn Scores::count(Self) -> Int32
 pub fn Scores::from_snapshot(String) -> Self raise ConformalError
@@ -176,14 +168,12 @@ pub(all) enum SetRule {
 }
 
 pub struct TailScores {
-  low : Scores
-  high : Scores
+  // private fields
 }
 pub fn TailScores::count(Self) -> Int32
 
 pub struct VectorCalibrator {
-  scores : Scores
-  dimensions : Int32
+  // private fields
 }
 pub fn VectorCalibrator::count(Self) -> Int32
 pub fn VectorCalibrator::dimension(Self) -> Int32

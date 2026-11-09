@@ -3,10 +3,10 @@
 ///|
 /// This validates supplied indices, not the internals of an external model.
 pub struct DataSplit {
-  size : Int32
-  train : Array[Int32]
-  calibration : Array[Int32]
-  evaluation : Array[Int32]
+  priv size : Int32
+  priv train : Array[Int32]
+  priv calibration : Array[Int32]
+  priv evaluation : Array[Int32]
 }
 
 ///|
