@@ -44,7 +44,7 @@ pub fn predict_scaled(
   validate_values(prediction, "prediction")
   validate_scales(scale, prediction.length())
   let q = scores.threshold(alpha)
-  if q < 0.0 {
+  if scores.sorted[0] < 0.0 {
     raise Invalid("normalized residual scores must be nonnegative")
   }
   let out = []

@@ -94,7 +94,7 @@ pub fn predict_absolute(
 ) -> Array[Interval] raise ConformalError {
   validate_values(prediction, "prediction")
   let radius = scores.threshold(alpha)
-  if radius < 0.0 {
+  if scores.sorted[0] < 0.0 {
     raise Invalid("absolute residual scores must be nonnegative")
   }
   prediction.map(p => checked_interval(p, radius))
