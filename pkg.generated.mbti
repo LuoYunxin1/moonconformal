@@ -113,9 +113,11 @@ pub struct Scores {
   sorted : Array[Double]
 }
 pub fn Scores::count(Self) -> Int32
+pub fn Scores::from_snapshot(String) -> Self raise ConformalError
 pub fn Scores::new(Array[Double]) -> Self raise ConformalError
 pub fn Scores::p_value(Self, Double) -> Double raise ConformalError
 pub fn Scores::threshold(Self, Double) -> Double raise ConformalError
+pub fn Scores::to_snapshot(Self) -> String
 pub fn Scores::values(Self) -> Array[Double]
 
 pub(all) struct SetMetrics {
