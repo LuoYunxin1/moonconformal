@@ -18,7 +18,11 @@ pub fn predict_cqr(Scores, Array[Double], Array[Double], Double) -> Array[Interv
 
 pub fn predict_scaled(Scores, Array[Double], Array[Double], Double) -> Array[Interval] raise ConformalError
 
+pub fn predict_tails(TailScores, Array[Double], Double, Double) -> Array[Interval] raise ConformalError
+
 pub fn scaled_scores(Array[Double], Array[Double], Array[Double]) -> Scores raise ConformalError
+
+pub fn tail_scores(Array[Double], Array[Double]) -> TailScores raise ConformalError
 
 // Errors
 pub(all) suberror ConformalError {
@@ -46,6 +50,12 @@ pub fn Scores::new(Array[Double]) -> Self raise ConformalError
 pub fn Scores::p_value(Self, Double) -> Double raise ConformalError
 pub fn Scores::threshold(Self, Double) -> Double raise ConformalError
 pub fn Scores::values(Self) -> Array[Double]
+
+pub struct TailScores {
+  low : Scores
+  high : Scores
+}
+pub fn TailScores::count(Self) -> Int32
 
 // Type aliases
 
