@@ -2,6 +2,7 @@
 pub(all) enum SetRule {
   Lac
   Aps
+  Raps(Double, Int32)
 }
 
 ///|
@@ -39,6 +40,14 @@ pub fn label_scores(
   match rule {
     Lac => row.map(p => 1.0 - p)
     Aps => cumulative_scores(row, 0.0, row.length())
+    Raps(penalty, after) => {
+      if !finite(penalty) || penalty < 0.0 || after < 0 || after > row.length() {
+        raise Invalid(
+          "RAPS requires finite nonnegative penalty and k in 0..classes",
+        )
+      }
+      cumulative_scores(row, penalty, after)
+    }
   }
 }
 
