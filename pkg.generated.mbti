@@ -89,9 +89,11 @@ pub struct GroupScores {
   groups : Map[String, Scores]
   names : Array[String]
 }
+pub fn GroupScores::from_snapshot(String) -> Self raise ConformalError
 pub fn GroupScores::get(Self, String) -> Scores raise ConformalError
 pub fn GroupScores::names(Self) -> Array[String]
 pub fn GroupScores::thresholds(Self, Double) -> Array[(String, Double)] raise ConformalError
+pub fn GroupScores::to_snapshot(Self) -> String raise ConformalError
 
 pub(all) struct Interval {
   lower : Double
