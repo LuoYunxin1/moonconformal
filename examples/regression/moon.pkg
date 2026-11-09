@@ -1,0 +1,6 @@
+import {
+  "LuoYunxin1/moonconformal" @conformal,
+  "moonbitlang/core/json",
+}
+
+pkgtype(kind: "executable")
