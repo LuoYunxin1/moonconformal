@@ -18,9 +18,13 @@ pub fn cqr_scores(Array[Double], Array[Double], Array[Double]) -> Scores raise C
 
 pub fn cvplus_calibrate(Array[Double], Array[Double], Array[Int32], Int32) -> CvPlus raise ConformalError
 
+pub fn evaluate_grouped_intervals(Array[Double], Array[Interval], Array[String]) -> Array[GroupIntervalMetrics] raise ConformalError
+
 pub fn evaluate_intervals(Array[Double], Array[Interval]) -> IntervalMetrics raise ConformalError
 
 pub fn evaluate_sets(Array[Int32], Array[Array[Int32]], Int32) -> SetMetrics raise ConformalError
+
+pub fn evaluate_vectors(Array[Array[Double]], Array[Array[Interval]]) -> VectorMetrics raise ConformalError
 
 pub fn grouped_scores(Array[Double], Array[String]) -> GroupScores raise ConformalError
 
@@ -73,6 +77,11 @@ pub struct CvPlus {
 pub fn CvPlus::count(Self) -> Int32
 pub fn CvPlus::fold_count(Self) -> Int32
 pub fn CvPlus::predict(Self, Array[Array[Double]], Double) -> Array[Interval] raise ConformalError
+
+pub(all) struct GroupIntervalMetrics {
+  group : String
+  metrics : IntervalMetrics
+}
 
 pub struct GroupScores {
   groups : Map[String, Scores]
@@ -138,6 +147,14 @@ pub struct VectorCalibrator {
 pub fn VectorCalibrator::count(Self) -> Int32
 pub fn VectorCalibrator::dimension(Self) -> Int32
 pub fn VectorCalibrator::predict(Self, Array[Array[Double]], Array[Array[Double]], Double) -> Array[Array[Interval]] raise ConformalError
+
+pub(all) struct VectorMetrics {
+  count : Int32
+  dimensions : Int32
+  covered : Int32
+  coverage : Double
+  per_dimension : Array[IntervalMetrics]
+}
 
 // Type aliases
 
