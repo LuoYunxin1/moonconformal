@@ -12,6 +12,10 @@ pub fn conformal_rank(Int32, Double) -> Int32 raise ConformalError
 
 pub fn predict_absolute(Scores, Array[Double], Double) -> Array[Interval] raise ConformalError
 
+pub fn predict_scaled(Scores, Array[Double], Array[Double], Double) -> Array[Interval] raise ConformalError
+
+pub fn scaled_scores(Array[Double], Array[Double], Array[Double]) -> Scores raise ConformalError
+
 // Errors
 pub(all) suberror ConformalError {
   Invalid(String)
