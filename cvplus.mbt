@@ -72,8 +72,8 @@ pub fn CvPlus::predict(
     raise ResourceLimit("CV+ batch exceeds two million candidate pairs")
   }
   let n = self.count()
-  let low_rank = ((n + 1).to_double() * alpha).floor().to_int()
   let high_rank = conformal_rank(n, alpha)
+  let low_rank = n + 1 - high_rank
   let result = []
   for row in test_by_fold {
     validate_values(row, "fold predictions")
