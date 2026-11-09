@@ -30,9 +30,13 @@ pub fn evaluate_vectors(Array[Array[Double]], Array[Array[Interval]]) -> VectorM
 
 pub fn grouped_scores(Array[Double], Array[String]) -> GroupScores raise ConformalError
 
+pub fn interval_path(Scores, Double, Array[Double]) -> Array[Interval] raise ConformalError
+
 pub fn interval_score(Interval, Double, Double) -> Double raise ConformalError
 
 pub fn label_scores(Array[Double], SetRule) -> Array[Double] raise ConformalError
+
+pub fn minimum_calibration_count(Double) -> Int32 raise ConformalError
 
 pub fn predict_absolute(Scores, Array[Double], Double) -> Array[Interval] raise ConformalError
 
@@ -61,6 +65,15 @@ pub(all) suberror ConformalError {
 pub fn ConformalError::to_repr(Self) -> @debug.Repr
 
 // Types and methods
+pub(all) struct CalibrationResolution {
+  count : Int32
+  smallest_p_value : Double
+  rank : Int32
+  finite_threshold : Bool
+  threshold : Double
+  tied_at_threshold : Int32
+}
+
 pub struct ClassCalibrator {
   scores : Scores
   classes : Int32
@@ -133,6 +146,7 @@ pub fn Scores::count(Self) -> Int32
 pub fn Scores::from_snapshot(String) -> Self raise ConformalError
 pub fn Scores::new(Array[Double]) -> Self raise ConformalError
 pub fn Scores::p_value(Self, Double) -> Double raise ConformalError
+pub fn Scores::resolution(Self, Double) -> CalibrationResolution raise ConformalError
 pub fn Scores::threshold(Self, Double) -> Double raise ConformalError
 pub fn Scores::to_snapshot(Self) -> String
 pub fn Scores::values(Self) -> Array[Double]
