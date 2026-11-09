@@ -26,7 +26,11 @@ pub fn predict_tails(TailScores, Array[Double], Double, Double) -> Array[Interva
 
 pub fn scaled_scores(Array[Double], Array[Double], Array[Double]) -> Scores raise ConformalError
 
+pub fn select_by_p_value(Scores, Array[Double], Double) -> Array[Int32] raise ConformalError
+
 pub fn tail_scores(Array[Double], Array[Double]) -> TailScores raise ConformalError
+
+pub fn threshold_path(Scores, Array[Double]) -> Array[Double] raise ConformalError
 
 // Errors
 pub(all) suberror ConformalError {
@@ -44,6 +48,7 @@ pub struct ClassCalibrator {
 }
 pub fn ClassCalibrator::class_count(Self) -> Int32
 pub fn ClassCalibrator::count(Self) -> Int32
+pub fn ClassCalibrator::p_values(Self, Array[Array[Double]]) -> Array[Array[Double]] raise ConformalError
 pub fn ClassCalibrator::predict(Self, Array[Array[Double]], Double) -> Array[Array[Int32]] raise ConformalError
 
 pub(all) struct Interval {
