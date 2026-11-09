@@ -14,11 +14,15 @@ pub fn conformal_rank(Int32, Double) -> Int32 raise ConformalError
 
 pub fn cqr_scores(Array[Double], Array[Double], Array[Double]) -> Scores raise ConformalError
 
+pub fn grouped_scores(Array[Double], Array[String]) -> GroupScores raise ConformalError
+
 pub fn label_scores(Array[Double], SetRule) -> Array[Double] raise ConformalError
 
 pub fn predict_absolute(Scores, Array[Double], Double) -> Array[Interval] raise ConformalError
 
 pub fn predict_cqr(Scores, Array[Double], Array[Double], Double) -> Array[Interval] raise ConformalError
+
+pub fn predict_grouped_absolute(GroupScores, Array[Double], Array[String], Double) -> Array[Interval] raise ConformalError
 
 pub fn predict_scaled(Scores, Array[Double], Array[Double], Double) -> Array[Interval] raise ConformalError
 
@@ -50,6 +54,14 @@ pub fn ClassCalibrator::class_count(Self) -> Int32
 pub fn ClassCalibrator::count(Self) -> Int32
 pub fn ClassCalibrator::p_values(Self, Array[Array[Double]]) -> Array[Array[Double]] raise ConformalError
 pub fn ClassCalibrator::predict(Self, Array[Array[Double]], Double) -> Array[Array[Int32]] raise ConformalError
+
+pub struct GroupScores {
+  groups : Map[String, Scores]
+  names : Array[String]
+}
+pub fn GroupScores::get(Self, String) -> Scores raise ConformalError
+pub fn GroupScores::names(Self) -> Array[String]
+pub fn GroupScores::thresholds(Self, Double) -> Array[(String, Double)] raise ConformalError
 
 pub(all) struct Interval {
   lower : Double
