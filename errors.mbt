@@ -1,10 +1,11 @@
 ///|
 /// Stable input failures. No invalid input silently falls back to another method.
+#derive(Debug)
 pub(all) suberror ConformalError {
   Invalid(String)
   ResourceLimit(String)
   UnknownGroup(String)
-} derive(Debug)
+}
 
 ///|
 pub extend ConformalError with @debug.Debug::{to_repr}

@@ -65,11 +65,12 @@ pub fn tail_scores(Array[Double], Array[Double]) -> TailScores raise ConformalEr
 pub fn threshold_path(Scores, Array[Double]) -> Array[Double] raise ConformalError
 
 // Errors
+#derive(@debug.Debug)
 pub(all) suberror ConformalError {
   Invalid(String)
   ResourceLimit(String)
   UnknownGroup(String)
-} derive(@debug.Debug)
+}
 pub fn ConformalError::to_repr(Self) -> @debug.Repr
 
 // Types and methods

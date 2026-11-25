@@ -2,7 +2,7 @@
 
 纯 MoonBit 的模型无关保形预测后处理库。把外部模型的独立校准预测和真值转换为回归预测区间、多分类标签集合，并检查组别覆盖率、集合大小与有限样本分辨率。库不训练模型，不需要 Python 运行时或第三方 MoonCakes 依赖。
 
-版本：`LuoYunxin1/moonconformal@0.1.0`；许可证：MIT。
+版本：`LuoYunxin1/moonconformal@0.1.1`；许可证：MIT。
 
 ## 用途与实际工作流
 
@@ -14,12 +14,12 @@
 
 ## 环境与安装
 
-开发及 CI 固定 `moonc v0.10.18+6c83a7f62`，高于赛事要求的 0.10.16；`moon` 为 0.1.20261028。支持 `wasm-gc`、`wasm`、`js`、Linux `native`。JS 需要 Node.js；native 需要 GCC/Clang。Windows 开发可使用 wasm-gc/wasm/js，Linux native 可用 WSL 或 CI 复现。
+开发及 CI 固定 `moonc v0.10.22+124d61d05`，高于赛事要求的 0.10.16；`moon` 为 0.1.20261119。支持 `wasm-gc`、`wasm`、`js`、Linux `native`。JS 需要 Node.js；native 需要 GCC/Clang。Windows 开发可使用 wasm-gc/wasm/js，Linux native 可用 WSL 或 CI 复现。
 
 在已有 MoonBit 项目目录中安装精确版本：
 
 ```sh
-moon add LuoYunxin1/moonconformal@0.1.0
+moon add LuoYunxin1/moonconformal@0.1.1
 ```
 
 在消费者的 `moon.pkg` 中导入：
